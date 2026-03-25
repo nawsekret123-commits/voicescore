@@ -50,10 +50,10 @@ def is_valid_phone(phone: str) -> bool:
 
 
 def send_telegram(name: str, phone: str, service: str, comment: str) -> tuple[bool, str]:
-    if not TELEGRAM_TOKEN or TELEGRAM_TOKEN == "ВСТАВЬ_СВОЙ_BOT_TOKEN":
+    if not TELEGRAM_TOKEN or TELEGRAM_TOKEN == "8799281877:AAE-9WAtLb5zrifnNLebL9Xiw6j1bn5RVeI":
         return False, "Не задан TELEGRAM_TOKEN"
 
-    if not TELEGRAM_CHAT_ID or TELEGRAM_CHAT_ID == "ВСТАВЬ_СВОЙ_CHAT_ID":
+    if not TELEGRAM_CHAT_ID or TELEGRAM_CHAT_ID == "622522768":
         return False, "Не задан TELEGRAM_CHAT_ID"
 
     safe_name = html.escape(name)
