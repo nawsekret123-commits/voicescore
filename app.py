@@ -11,8 +11,8 @@ app = Flask(__name__)
 TELEGRAM_TOKEN = "8799281877:AAHuImnbo4676epEZKKmRuMRR5skmR-0F2g"
 TELEGRAM_CHAT_ID = "622522768"
 
-TELEGRAM_LINK = "https://t.me/Takhir_Zhanatovich"
-WHATSAPP_LINK = "https://wa.me/77078340913"
+TELEGRAM_LINK = "https://t.me/Mussayev_Yermurat"
+WHATSAPP_LINK = "https://wa.me/77001199771"
 
 SITE_TITLE = "VoiceScore"
 SITE_SUBTITLE = "AI аналитика звонков"
