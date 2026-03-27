@@ -104,9 +104,9 @@ HTML = """
         :root {
             --bg: #060914;
             --bg2: #0a1120;
-            --bg3: #0c1728;
+            --bg3: #0d1727;
             --card: rgba(255,255,255,0.055);
-            --card-strong: rgba(255,255,255,0.07);
+            --card-strong: rgba(255,255,255,0.075);
             --line: rgba(255,255,255,0.10);
             --text: #ffffff;
             --muted: #9fb2c9;
@@ -117,6 +117,7 @@ HTML = """
             --success: #22c55e;
             --danger: #ef4444;
             --shadow: 0 24px 70px rgba(0, 0, 0, 0.30);
+            --shadow-soft: 0 16px 40px rgba(0,0,0,0.22);
             --radius-xl: 32px;
             --radius-lg: 24px;
             --radius-md: 18px;
@@ -129,9 +130,9 @@ HTML = """
             color: var(--text);
             font-family: Inter, Arial, sans-serif;
             background:
-                radial-gradient(circle at 12% 14%, rgba(98,245,212,0.05), transparent 22%),
-                radial-gradient(circle at 88% 10%, rgba(72,184,255,0.05), transparent 22%),
-                radial-gradient(circle at 50% 80%, rgba(155,140,255,0.04), transparent 24%),
+                radial-gradient(circle at 12% 14%, rgba(98,245,212,0.06), transparent 22%),
+                radial-gradient(circle at 88% 10%, rgba(72,184,255,0.06), transparent 22%),
+                radial-gradient(circle at 50% 80%, rgba(155,140,255,0.05), transparent 24%),
                 linear-gradient(180deg, #050913 0%, #09111d 42%, #0b1523 100%);
             overflow-x: hidden;
         }
@@ -149,24 +150,33 @@ HTML = """
             z-index: 0;
         }
 
-        #network-bg {
-            position: fixed;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-            opacity: 0.28;
-        }
-
         body::after {
             content: "";
             position: fixed;
             inset: 0;
             background:
-                radial-gradient(circle at center, transparent 0%, rgba(5,9,19,0.06) 58%, rgba(5,9,19,0.28) 100%);
+                radial-gradient(circle at center, transparent 0%, rgba(5,9,19,0.04) 58%, rgba(5,9,19,0.22) 100%);
             pointer-events: none;
             z-index: 2;
+        }
+
+        #network-bg,
+        #signal-bg {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        #network-bg {
+            z-index: 1;
+            opacity: 0.34;
+        }
+
+        #signal-bg {
+            z-index: 1;
+            opacity: 0.22;
         }
 
         a {
@@ -185,7 +195,7 @@ HTML = """
             margin: 0 auto;
             padding: 0 24px;
             position: relative;
-            z-index: 5;
+            z-index: 6;
         }
 
         .parallax {
@@ -197,32 +207,32 @@ HTML = """
             position: absolute;
             border-radius: 999px;
             filter: blur(100px);
-            opacity: 0.28;
+            opacity: 0.30;
             pointer-events: none;
             z-index: 3;
         }
 
         .orb-1 {
-            width: 340px;
-            height: 340px;
-            background: rgba(98,245,212,0.14);
-            top: 60px;
-            left: -100px;
+            width: 360px;
+            height: 360px;
+            background: rgba(98,245,212,0.16);
+            top: 70px;
+            left: -110px;
         }
 
         .orb-2 {
             width: 300px;
             height: 300px;
-            background: rgba(72,184,255,0.12);
-            top: 30px;
+            background: rgba(72,184,255,0.14);
+            top: 20px;
             right: -80px;
         }
 
         .orb-3 {
-            width: 240px;
-            height: 240px;
+            width: 250px;
+            height: 250px;
             background: rgba(155,140,255,0.10);
-            bottom: 40px;
+            bottom: 50px;
             left: 48%;
         }
 
@@ -230,9 +240,16 @@ HTML = """
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(6, 10, 20, 0.60);
+            background: rgba(6, 10, 20, 0.52);
             backdrop-filter: blur(18px);
             border-bottom: 1px solid rgba(255,255,255,0.06);
+            transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(6, 10, 20, 0.72);
+            border-bottom-color: rgba(98,245,212,0.09);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.16);
         }
 
         .nav-inner {
@@ -259,7 +276,7 @@ HTML = """
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, rgba(98,245,212,0.14), rgba(72,184,255,0.12));
+            background: linear-gradient(135deg, rgba(98,245,212,0.16), rgba(72,184,255,0.13));
             border: 1px solid rgba(255,255,255,0.08);
             box-shadow: 0 10px 24px rgba(98,245,212,0.08);
         }
@@ -297,7 +314,7 @@ HTML = """
             font-weight: 800;
             font-size: 15px;
             border: 1px solid transparent;
-            transition: transform 0.16s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            transition: transform 0.16s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
             cursor: pointer;
             position: relative;
             overflow: hidden;
@@ -344,12 +361,12 @@ HTML = """
         .hero::before {
             content: "";
             position: absolute;
-            width: 620px;
-            height: 620px;
-            background: radial-gradient(circle, rgba(98,245,212,0.09), transparent 68%);
+            width: 640px;
+            height: 640px;
+            background: radial-gradient(circle, rgba(98,245,212,0.11), transparent 68%);
             top: -190px;
             left: -160px;
-            filter: blur(100px);
+            filter: blur(110px);
             z-index: 3;
             pointer-events: none;
         }
@@ -357,12 +374,12 @@ HTML = """
         .hero::after {
             content: "";
             position: absolute;
-            width: 560px;
-            height: 560px;
-            background: radial-gradient(circle, rgba(72,184,255,0.08), transparent 68%);
+            width: 580px;
+            height: 580px;
+            background: radial-gradient(circle, rgba(72,184,255,0.09), transparent 68%);
             top: -150px;
             right: -160px;
-            filter: blur(100px);
+            filter: blur(110px);
             z-index: 3;
             pointer-events: none;
         }
@@ -371,9 +388,12 @@ HTML = """
             position: relative;
             border-radius: 34px;
             padding: 34px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.018));
+            background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
             border: 1px solid rgba(255,255,255,0.07);
-            box-shadow: var(--shadow);
+            backdrop-filter: blur(18px);
+            box-shadow:
+                0 24px 80px rgba(0,0,0,0.34),
+                inset 0 1px 0 rgba(255,255,255,0.04);
             overflow: hidden;
         }
 
@@ -457,7 +477,7 @@ HTML = """
         .stat-chip {
             padding: 18px 18px;
             border-radius: 18px;
-            background: rgba(255,255,255,0.04);
+            background: rgba(255,255,255,0.045);
             border: 1px solid rgba(255,255,255,0.07);
             backdrop-filter: blur(12px);
         }
@@ -507,9 +527,13 @@ HTML = """
             position: relative;
             border-radius: 28px;
             padding: 22px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.025));
+            background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.028));
             border: 1px solid rgba(255,255,255,0.07);
             backdrop-filter: blur(16px);
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.30),
+                0 0 0 1px rgba(98,245,212,0.06),
+                0 0 40px rgba(98,245,212,0.04);
             overflow: hidden;
             min-height: 100%;
         }
@@ -659,6 +683,12 @@ HTML = """
             border-radius: 999px;
             background: linear-gradient(90deg, #62f5d4, #5fd4ff, #b6b0ff);
             box-shadow: 0 0 14px rgba(98,245,212,0.18);
+            width: 0 !important;
+            transition: width 1.2s cubic-bezier(.2,.9,.2,1);
+        }
+
+        .bar-fill.animate {
+            width: var(--target-width) !important;
         }
 
         .bar-value {
@@ -765,7 +795,26 @@ HTML = """
             pointer-events: none;
         }
 
+        .card::after {
+            content: "";
+            position: absolute;
+            top: -120%;
+            left: -40%;
+            width: 60%;
+            height: 260%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+            transform: rotate(18deg);
+            opacity: 0;
+            transition: 0.7s ease;
+            pointer-events: none;
+        }
+
         .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover::after {
+            left: 120%;
             opacity: 1;
         }
 
@@ -1238,7 +1287,7 @@ HTML = """
             text-align: center;
             color: var(--muted);
             font-size: 14px;
-            z-index: 5;
+            z-index: 6;
         }
 
         .floating-socials {
@@ -1395,12 +1444,13 @@ HTML = """
 <body>
 
     <canvas id="network-bg"></canvas>
+    <canvas id="signal-bg"></canvas>
 
     <section class="hero">
-        <div class="orb orb-1 parallax" data-speed="16"></div>
-        <div class="orb orb-2 parallax" data-speed="12"></div>
+        <div class="orb orb-1 parallax" data-speed="18"></div>
+        <div class="orb orb-2 parallax" data-speed="14"></div>
 
-        <div class="navbar">
+        <div class="navbar" id="navbar">
             <div class="container nav-inner">
                 <div class="logo">
                     <div class="logo-mark">
@@ -1506,22 +1556,22 @@ HTML = """
                                 <div class="bars">
                                     <div class="bar-row">
                                         <div class="bar-label">Скрипт</div>
-                                        <div class="bar-track"><div class="bar-fill" style="width: 91%;"></div></div>
+                                        <div class="bar-track"><div class="bar-fill reveal-bar" data-width="91%"></div></div>
                                         <div class="bar-value">91%</div>
                                     </div>
                                     <div class="bar-row">
                                         <div class="bar-label">Вежливость</div>
-                                        <div class="bar-track"><div class="bar-fill" style="width: 88%;"></div></div>
+                                        <div class="bar-track"><div class="bar-fill reveal-bar" data-width="88%"></div></div>
                                         <div class="bar-value">88%</div>
                                     </div>
                                     <div class="bar-row">
                                         <div class="bar-label">Дожим</div>
-                                        <div class="bar-track"><div class="bar-fill" style="width: 79%;"></div></div>
+                                        <div class="bar-track"><div class="bar-fill reveal-bar" data-width="79%"></div></div>
                                         <div class="bar-value">79%</div>
                                     </div>
                                     <div class="bar-row">
                                         <div class="bar-label">Ошибки</div>
-                                        <div class="bar-track"><div class="bar-fill" style="width: 32%;"></div></div>
+                                        <div class="bar-track"><div class="bar-fill reveal-bar" data-width="32%"></div></div>
                                         <div class="bar-value">32%</div>
                                     </div>
                                 </div>
@@ -1544,7 +1594,7 @@ HTML = """
             </div>
         </div>
 
-        <div class="orb orb-3 parallax" data-speed="20"></div>
+        <div class="orb orb-3 parallax" data-speed="22"></div>
     </section>
 
     <section id="features" class="section">
@@ -1931,6 +1981,7 @@ HTML = """
 
     <script>
         const phoneInput = document.getElementById("phone");
+        const navbar = document.getElementById("navbar");
 
         if (phoneInput) {
             phoneInput.addEventListener("input", function(e) {
@@ -1956,6 +2007,17 @@ HTML = """
                 e.target.value = formatted;
             });
         }
+
+        function onScrollUI() {
+            if (window.scrollY > 20) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        }
+
+        onScrollUI();
+        window.addEventListener("scroll", onScrollUI);
 
         const animated = document.querySelectorAll('.fade-up');
 
@@ -1985,7 +2047,7 @@ HTML = """
             requestAnimationFrame(step);
         }
 
-        const observer = new IntersectionObserver((entries) => {
+        const counterObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (!entry.isIntersecting) return;
 
@@ -2000,7 +2062,24 @@ HTML = """
             });
         }, { threshold: 0.45 });
 
-        document.querySelectorAll(".count-up").forEach(el => observer.observe(el));
+        document.querySelectorAll(".count-up").forEach(el => counterObserver.observe(el));
+
+        const barObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                if (el.dataset.done === "true") return;
+
+                const targetWidth = el.dataset.width || "0%";
+                el.style.setProperty("--target-width", targetWidth);
+                requestAnimationFrame(() => {
+                    el.classList.add("animate");
+                });
+                el.dataset.done = "true";
+            });
+        }, { threshold: 0.35 });
+
+        document.querySelectorAll(".reveal-bar").forEach(el => barObserver.observe(el));
 
         document.querySelectorAll(".magnetic").forEach(btn => {
             btn.addEventListener("mousemove", e => {
@@ -2025,35 +2104,75 @@ HTML = """
             });
         });
 
-        const canvas = document.getElementById("network-bg");
-        const ctx = canvas.getContext("2d");
+        const networkCanvas = document.getElementById("network-bg");
+        const networkCtx = networkCanvas.getContext("2d");
 
-        let w, h, particles = [];
+        const signalCanvas = document.getElementById("signal-bg");
+        const signalCtx = signalCanvas.getContext("2d");
+
+        let w, h;
+        let smallParticles = [];
+        let midParticles = [];
+        let glowParticles = [];
+        let signals = [];
         let mouse = {
             x: null,
             y: null,
-            radius: 160
+            radius: 170
         };
 
         function resizeCanvas() {
-            w = canvas.width = window.innerWidth;
-            h = canvas.height = window.innerHeight;
+            w = networkCanvas.width = signalCanvas.width = window.innerWidth;
+            h = networkCanvas.height = signalCanvas.height = window.innerHeight;
 
-            const count = Math.min(85, Math.floor(w / 22));
-            particles = [];
+            const smallCount = Math.min(90, Math.floor(w / 20));
+            const midCount = Math.min(38, Math.floor(w / 50));
+            const glowCount = Math.min(10, Math.floor(w / 160));
 
-            for (let i = 0; i < count; i++) {
-                particles.push({
+            smallParticles = [];
+            midParticles = [];
+            glowParticles = [];
+            signals = [];
+
+            for (let i = 0; i < smallCount; i++) {
+                smallParticles.push({
                     x: Math.random() * w,
                     y: Math.random() * h,
-                    vx: (Math.random() - 0.5) * 0.28,
-                    vy: (Math.random() - 0.5) * 0.28,
-                    r: Math.random() * 1.5 + 0.7
+                    vx: 0.10 + Math.random() * 0.10,
+                    vy: -0.04 + Math.random() * 0.08,
+                    r: Math.random() * 1.4 + 0.5
+                });
+            }
+
+            for (let i = 0; i < midCount; i++) {
+                midParticles.push({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    vx: 0.06 + Math.random() * 0.08,
+                    vy: -0.03 + Math.random() * 0.06,
+                    r: Math.random() * 1.8 + 1
+                });
+            }
+
+            for (let i = 0; i < glowCount; i++) {
+                glowParticles.push({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    vx: 0.03 + Math.random() * 0.05,
+                    vy: -0.02 + Math.random() * 0.04,
+                    size: Math.random() * 90 + 60
                 });
             }
         }
 
-        function drawGlow(x, y, size, color) {
+        function wrapParticle(p) {
+            if (p.x > w + 40) p.x = -40;
+            if (p.y > h + 40) p.y = -40;
+            if (p.x < -40) p.x = w + 40;
+            if (p.y < -40) p.y = h + 40;
+        }
+
+        function drawGlow(ctx, x, y, size, color) {
             const g = ctx.createRadialGradient(x, y, 0, x, y, size);
             g.addColorStop(0, color);
             g.addColorStop(1, "rgba(0,0,0,0)");
@@ -2063,17 +2182,34 @@ HTML = """
             ctx.fill();
         }
 
-        function animateBackground() {
-            ctx.clearRect(0, 0, w, h);
+        function maybeCreateSignal() {
+            if (Math.random() < 0.02 && midParticles.length > 1) {
+                const a = midParticles[Math.floor(Math.random() * midParticles.length)];
+                let b = midParticles[Math.floor(Math.random() * midParticles.length)];
 
-            for (let i = 0; i < particles.length; i++) {
-                const p = particles[i];
+                if (a === b) return;
 
+                const dx = a.x - b.x;
+                const dy = a.y - b.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < 160) {
+                    signals.push({
+                        ax: a.x,
+                        ay: a.y,
+                        bx: b.x,
+                        by: b.y,
+                        t: 0,
+                        speed: 0.02 + Math.random() * 0.02
+                    });
+                }
+            }
+        }
+
+        function updateParticles(arr, influence = 1) {
+            arr.forEach(p => {
                 p.x += p.vx;
                 p.y += p.vy;
-
-                if (p.x < 0 || p.x > w) p.vx *= -1;
-                if (p.y < 0 || p.y > h) p.vy *= -1;
 
                 if (mouse.x !== null && mouse.y !== null) {
                     const dxm = p.x - mouse.x;
@@ -2082,39 +2218,79 @@ HTML = """
 
                     if (distm < mouse.radius) {
                         const force = (mouse.radius - distm) / mouse.radius;
-                        p.x += (dxm / distm) * force * 0.9 || 0;
-                        p.y += (dym / distm) * force * 0.9 || 0;
+                        p.x += (dxm / (distm || 1)) * force * influence;
+                        p.y += (dym / (distm || 1)) * force * influence;
                     }
                 }
 
-                drawGlow(p.x, p.y, 7, "rgba(98,245,212,0.03)");
+                wrapParticle(p);
+            });
+        }
 
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = "rgba(120,245,230,0.55)";
-                ctx.fill();
-            }
+        function animateBackground() {
+            networkCtx.clearRect(0, 0, w, h);
+            signalCtx.clearRect(0, 0, w, h);
 
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
+            updateParticles(smallParticles, 0.7);
+            updateParticles(midParticles, 1.0);
+            updateParticles(glowParticles, 0.3);
+
+            glowParticles.forEach(p => {
+                drawGlow(networkCtx, p.x, p.y, p.size, "rgba(98,245,212,0.025)");
+            });
+
+            smallParticles.forEach(p => {
+                networkCtx.beginPath();
+                networkCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                networkCtx.fillStyle = "rgba(120,245,230,0.38)";
+                networkCtx.fill();
+            });
+
+            midParticles.forEach(p => {
+                drawGlow(networkCtx, p.x, p.y, 7, "rgba(98,245,212,0.025)");
+                networkCtx.beginPath();
+                networkCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                networkCtx.fillStyle = "rgba(120,245,230,0.58)";
+                networkCtx.fill();
+            });
+
+            for (let i = 0; i < midParticles.length; i++) {
+                for (let j = i + 1; j < midParticles.length; j++) {
+                    const dx = midParticles[i].x - midParticles[j].x;
+                    const dy = midParticles[i].y - midParticles[j].y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
 
-                    if (dist < 115) {
-                        const alpha = (1 - dist / 115) * 0.14;
-                        ctx.strokeStyle = `rgba(98,245,212,${alpha})`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
+                    if (dist < 145) {
+                        const alpha = (1 - dist / 145) * 0.12;
+                        networkCtx.strokeStyle = `rgba(98,245,212,${alpha})`;
+                        networkCtx.lineWidth = 1;
+                        networkCtx.beginPath();
+                        networkCtx.moveTo(midParticles[i].x, midParticles[i].y);
+                        networkCtx.lineTo(midParticles[j].x, midParticles[j].y);
+                        networkCtx.stroke();
                     }
                 }
             }
 
+            maybeCreateSignal();
+
+            signals = signals.filter(s => s.t < 1.02);
+
+            signals.forEach(s => {
+                s.t += s.speed;
+                const x = s.ax + (s.bx - s.ax) * s.t;
+                const y = s.ay + (s.by - s.ay) * s.t;
+
+                signalCtx.beginPath();
+                signalCtx.arc(x, y, 2.2, 0, Math.PI * 2);
+                signalCtx.fillStyle = "rgba(95,212,255,0.75)";
+                signalCtx.fill();
+
+                drawGlow(signalCtx, x, y, 18, "rgba(95,212,255,0.10)");
+            });
+
             if (mouse.x !== null && mouse.y !== null) {
-                drawGlow(mouse.x, mouse.y, 90, "rgba(72,184,255,0.035)");
+                drawGlow(networkCtx, mouse.x, mouse.y, 95, "rgba(72,184,255,0.03)");
             }
 
             requestAnimationFrame(animateBackground);
