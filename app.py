@@ -63,7 +63,10 @@ def send_telegram(name, phone, service, comment):
     try:
         response = requests.post(
             url,
-            data={"chat_id": TELEGRAM_CHAT_ID, "text": text},
+            data={
+                "chat_id": TELEGRAM_CHAT_ID,
+                "text": text
+            },
             timeout=15
         )
 
@@ -129,9 +132,9 @@ HTML = """
             color: var(--text);
             font-family: Inter, Arial, sans-serif;
             background:
-                radial-gradient(circle at 10% 10%, rgba(98,245,212,0.12), transparent 24%),
-                radial-gradient(circle at 90% 12%, rgba(72,184,255,0.11), transparent 22%),
-                radial-gradient(circle at 50% 85%, rgba(155,140,255,0.10), transparent 26%),
+                radial-gradient(circle at 10% 10%, rgba(98,245,212,0.10), transparent 24%),
+                radial-gradient(circle at 90% 12%, rgba(72,184,255,0.09), transparent 22%),
+                radial-gradient(circle at 50% 85%, rgba(155,140,255,0.08), transparent 26%),
                 linear-gradient(180deg, #040814 0%, #07101f 40%, #0a1428 100%);
             overflow-x: hidden;
         }
@@ -141,12 +144,32 @@ HTML = """
             position: fixed;
             inset: 0;
             background-image:
-                linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
             background-size: 44px 44px;
             mask-image: radial-gradient(circle at center, black 30%, transparent 88%);
             pointer-events: none;
             z-index: 0;
+        }
+
+        #network-bg {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.55;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at center, transparent 0%, rgba(4,10,22,0.12) 60%, rgba(4,10,22,0.42) 100%);
+            pointer-events: none;
+            z-index: 2;
         }
 
         a {
@@ -165,22 +188,22 @@ HTML = """
             margin: 0 auto;
             padding: 0 24px;
             position: relative;
-            z-index: 2;
+            z-index: 5;
         }
 
         .orb {
             position: absolute;
             border-radius: 999px;
             filter: blur(90px);
-            opacity: 0.5;
+            opacity: 0.45;
             pointer-events: none;
-            z-index: 1;
+            z-index: 3;
         }
 
         .orb-1 {
             width: 380px;
             height: 380px;
-            background: rgba(98,245,212,0.18);
+            background: rgba(98,245,212,0.16);
             top: 40px;
             left: -120px;
         }
@@ -188,7 +211,7 @@ HTML = """
         .orb-2 {
             width: 320px;
             height: 320px;
-            background: rgba(72,184,255,0.18);
+            background: rgba(72,184,255,0.16);
             top: 0;
             right: -100px;
         }
@@ -196,7 +219,7 @@ HTML = """
         .orb-3 {
             width: 260px;
             height: 260px;
-            background: rgba(155,140,255,0.16);
+            background: rgba(155,140,255,0.14);
             bottom: -40px;
             left: 45%;
         }
@@ -205,7 +228,7 @@ HTML = """
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(4, 10, 22, 0.70);
+            background: rgba(4, 10, 22, 0.62);
             backdrop-filter: blur(18px);
             border-bottom: 1px solid rgba(255,255,255,0.07);
         }
@@ -324,11 +347,11 @@ HTML = """
             position: absolute;
             width: 700px;
             height: 700px;
-            background: radial-gradient(circle, rgba(98,245,212,0.18), transparent 68%);
+            background: radial-gradient(circle, rgba(98,245,212,0.16), transparent 68%);
             top: -220px;
             left: -180px;
             filter: blur(100px);
-            z-index: 1;
+            z-index: 3;
             pointer-events: none;
         }
 
@@ -337,11 +360,11 @@ HTML = """
             position: absolute;
             width: 640px;
             height: 640px;
-            background: radial-gradient(circle, rgba(72,184,255,0.18), transparent 68%);
+            background: radial-gradient(circle, rgba(72,184,255,0.16), transparent 68%);
             top: -160px;
             right: -180px;
             filter: blur(100px);
-            z-index: 1;
+            z-index: 3;
             pointer-events: none;
         }
 
@@ -361,13 +384,13 @@ HTML = """
             inset: 0;
             background:
                 linear-gradient(135deg, rgba(255,255,255,0.06), transparent 28%),
-                radial-gradient(circle at 90% 0%, rgba(98,245,212,0.12), transparent 22%);
+                radial-gradient(circle at 90% 0%, rgba(98,245,212,0.10), transparent 22%);
             pointer-events: none;
         }
 
         .hero-grid {
             position: relative;
-            z-index: 2;
+            z-index: 6;
             display: grid;
             grid-template-columns: 1.08fr 0.92fr;
             gap: 26px;
@@ -499,7 +522,7 @@ HTML = """
             height: 160%;
             top: -40%;
             left: -36%;
-            background: radial-gradient(circle, rgba(98,245,212,0.12), transparent 36%);
+            background: radial-gradient(circle, rgba(98,245,212,0.10), transparent 36%);
             pointer-events: none;
         }
 
@@ -510,13 +533,13 @@ HTML = """
             height: 140%;
             bottom: -40%;
             right: -40%;
-            background: radial-gradient(circle, rgba(72,184,255,0.10), transparent 36%);
+            background: radial-gradient(circle, rgba(72,184,255,0.09), transparent 36%);
             pointer-events: none;
         }
 
         .dashboard-inner {
             position: relative;
-            z-index: 2;
+            z-index: 6;
         }
 
         .dashboard-head {
@@ -821,7 +844,6 @@ HTML = """
 
         .steps-box,
         .preview-box,
-        .pricing-box,
         .form-box {
             border-radius: 28px;
             padding: 28px;
@@ -832,7 +854,6 @@ HTML = """
 
         .steps-box h3,
         .preview-box h3,
-        .pricing-box h3,
         .form-box h3 {
             margin: 0 0 14px;
             font-size: 30px;
@@ -841,7 +862,6 @@ HTML = """
 
         .steps-box p,
         .preview-box p,
-        .pricing-box p,
         .form-box p {
             margin: 0 0 20px;
             color: var(--muted);
@@ -1222,6 +1242,7 @@ HTML = """
             text-align: center;
             color: var(--muted);
             font-size: 14px;
+            z-index: 5;
         }
 
         .floating-socials {
@@ -1378,6 +1399,8 @@ HTML = """
 </head>
 <body>
 
+    <canvas id="network-bg"></canvas>
+
     <div class="navbar">
         <div class="container nav-inner">
             <div class="logo">
@@ -1392,7 +1415,7 @@ HTML = """
             <div class="nav-links">
                 <a href="#features">Возможности</a>
                 <a href="#how">Как это работает</a>
-                <a href="#reports">Что видно в отчетах</a>
+                <a href="#reports">Что видно</a>
                 <a href="#pricing">Тариф</a>
                 <a href="#contact">Контакты</a>
             </div>
@@ -1416,7 +1439,7 @@ HTML = """
 
                         <h1 class="gradient-text">
                             {{ site_title }} —
-                            AI аналитика звонков для роста команды
+                            умная аналитика звонков для роста команды
                         </h1>
 
                         <p class="hero-subtitle">
@@ -1438,7 +1461,7 @@ HTML = """
                             </div>
                             <div class="stat-chip">
                                 <strong>до 5 ПК</strong>
-                                <span>доступ для команды без перегруза</span>
+                                <span>до 5 учетных записей для команды</span>
                             </div>
                             <div class="stat-chip">
                                 <strong>ежедневно</strong>
@@ -1621,7 +1644,7 @@ HTML = """
                 <div class="preview-box fade-up delay-2">
                     <h3>Как это выглядит внутри</h3>
                     <p>
-                        Не просто “красивый экран”, а рабочий инструмент:
+                        Не просто красивый экран, а рабочий инструмент:
                         оценки, статистика, ошибки, резюме диалогов и динамика по людям и отделам.
                     </p>
 
@@ -1774,8 +1797,10 @@ HTML = """
                     <div class="info-card fade-up delay-3">
                         <h4>Что нужно с вашей стороны</h4>
                         <p>
-                            Доступы и API-ключи к необходимым системам, например телефонии и ИИ,
-                            если они используются в вашем процессе.
+                            Для работы программы обязательно потребуются API-ключи и доступы
+                            к используемым сервисам ИИ и телефонии. Эти ключи нужны для того,
+                            чтобы после покупки система могла анализировать звонки,
+                            обрабатывать данные и формировать отчеты внутри вашего процесса.
                         </p>
                     </div>
 
@@ -1941,6 +1966,116 @@ HTML = """
 
         reveal();
         window.addEventListener('scroll', reveal);
+
+        const canvas = document.getElementById("network-bg");
+        const ctx = canvas.getContext("2d");
+
+        let w, h, particles = [];
+        let mouse = {
+            x: null,
+            y: null,
+            radius: 170
+        };
+
+        function resizeCanvas() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+
+            const count = Math.min(110, Math.floor(w / 16));
+            particles = [];
+
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    vx: (Math.random() - 0.5) * 0.42,
+                    vy: (Math.random() - 0.5) * 0.42,
+                    r: Math.random() * 1.8 + 0.8
+                });
+            }
+        }
+
+        function drawGlow(x, y, size, color) {
+            const g = ctx.createRadialGradient(x, y, 0, x, y, size);
+            g.addColorStop(0, color);
+            g.addColorStop(1, "rgba(0,0,0,0)");
+            ctx.fillStyle = g;
+            ctx.beginPath();
+            ctx.arc(x, y, size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, w, h);
+
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > w) p.vx *= -1;
+                if (p.y < 0 || p.y > h) p.vy *= -1;
+
+                if (mouse.x !== null && mouse.y !== null) {
+                    const dxm = p.x - mouse.x;
+                    const dym = p.y - mouse.y;
+                    const distm = Math.sqrt(dxm * dxm + dym * dym);
+
+                    if (distm < mouse.radius) {
+                        const force = (mouse.radius - distm) / mouse.radius;
+                        p.x += (dxm / distm) * force * 1.4 || 0;
+                        p.y += (dym / distm) * force * 1.4 || 0;
+                    }
+                }
+
+                drawGlow(p.x, p.y, 8, "rgba(98,245,212,0.05)");
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = "rgba(120,245,230,0.75)";
+                ctx.fill();
+            }
+
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 130) {
+                        const alpha = (1 - dist / 130) * 0.22;
+                        ctx.strokeStyle = `rgba(98,245,212,${alpha})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            if (mouse.x !== null && mouse.y !== null) {
+                drawGlow(mouse.x, mouse.y, 110, "rgba(72,184,255,0.06)");
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener("mousemove", (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        window.addEventListener("mouseout", () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        window.addEventListener("resize", resizeCanvas);
+
+        resizeCanvas();
+        animate();
     </script>
 
 </body>
