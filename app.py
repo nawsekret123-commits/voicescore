@@ -63,10 +63,7 @@ def send_telegram(name, phone, service, comment):
     try:
         response = requests.post(
             url,
-            data={
-                "chat_id": TELEGRAM_CHAT_ID,
-                "text": text
-            },
+            data={"chat_id": TELEGRAM_CHAT_ID, "text": text},
             timeout=15
         )
 
@@ -105,22 +102,22 @@ HTML = """
         }
 
         :root {
-            --bg: #050816;
-            --bg2: #091226;
-            --bg3: #0e1830;
-            --card: rgba(255,255,255,0.06);
-            --card-strong: rgba(255,255,255,0.08);
-            --line: rgba(255,255,255,0.12);
+            --bg: #060914;
+            --bg2: #0a1120;
+            --bg3: #0c1728;
+            --card: rgba(255,255,255,0.055);
+            --card-strong: rgba(255,255,255,0.07);
+            --line: rgba(255,255,255,0.10);
             --text: #ffffff;
             --muted: #9fb2c9;
-            --muted-2: #7e91aa;
+            --muted-2: #7d8fa6;
             --accent: #62f5d4;
             --accent-2: #48b8ff;
             --accent-3: #9b8cff;
             --success: #22c55e;
             --danger: #ef4444;
-            --shadow: 0 20px 80px rgba(0, 0, 0, 0.35);
-            --radius-xl: 30px;
+            --shadow: 0 24px 70px rgba(0, 0, 0, 0.30);
+            --radius-xl: 32px;
             --radius-lg: 24px;
             --radius-md: 18px;
             --container: 1240px;
@@ -132,10 +129,10 @@ HTML = """
             color: var(--text);
             font-family: Inter, Arial, sans-serif;
             background:
-                radial-gradient(circle at 10% 10%, rgba(98,245,212,0.10), transparent 24%),
-                radial-gradient(circle at 90% 12%, rgba(72,184,255,0.09), transparent 22%),
-                radial-gradient(circle at 50% 85%, rgba(155,140,255,0.08), transparent 26%),
-                linear-gradient(180deg, #040814 0%, #07101f 40%, #0a1428 100%);
+                radial-gradient(circle at 12% 14%, rgba(98,245,212,0.05), transparent 22%),
+                radial-gradient(circle at 88% 10%, rgba(72,184,255,0.05), transparent 22%),
+                radial-gradient(circle at 50% 80%, rgba(155,140,255,0.04), transparent 24%),
+                linear-gradient(180deg, #050913 0%, #09111d 42%, #0b1523 100%);
             overflow-x: hidden;
         }
 
@@ -144,10 +141,10 @@ HTML = """
             position: fixed;
             inset: 0;
             background-image:
-                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-            background-size: 44px 44px;
-            mask-image: radial-gradient(circle at center, black 30%, transparent 88%);
+                linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: radial-gradient(circle at center, black 26%, transparent 82%);
             pointer-events: none;
             z-index: 0;
         }
@@ -159,7 +156,7 @@ HTML = """
             height: 100%;
             z-index: 1;
             pointer-events: none;
-            opacity: 0.55;
+            opacity: 0.28;
         }
 
         body::after {
@@ -167,7 +164,7 @@ HTML = """
             position: fixed;
             inset: 0;
             background:
-                radial-gradient(circle at center, transparent 0%, rgba(4,10,22,0.12) 60%, rgba(4,10,22,0.42) 100%);
+                radial-gradient(circle at center, transparent 0%, rgba(5,9,19,0.06) 58%, rgba(5,9,19,0.28) 100%);
             pointer-events: none;
             z-index: 2;
         }
@@ -191,46 +188,51 @@ HTML = """
             z-index: 5;
         }
 
+        .parallax {
+            transition: transform 0.25s linear;
+            will-change: transform;
+        }
+
         .orb {
             position: absolute;
             border-radius: 999px;
-            filter: blur(90px);
-            opacity: 0.45;
+            filter: blur(100px);
+            opacity: 0.28;
             pointer-events: none;
             z-index: 3;
         }
 
         .orb-1 {
-            width: 380px;
-            height: 380px;
-            background: rgba(98,245,212,0.16);
-            top: 40px;
-            left: -120px;
+            width: 340px;
+            height: 340px;
+            background: rgba(98,245,212,0.14);
+            top: 60px;
+            left: -100px;
         }
 
         .orb-2 {
-            width: 320px;
-            height: 320px;
-            background: rgba(72,184,255,0.16);
-            top: 0;
-            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: rgba(72,184,255,0.12);
+            top: 30px;
+            right: -80px;
         }
 
         .orb-3 {
-            width: 260px;
-            height: 260px;
-            background: rgba(155,140,255,0.14);
-            bottom: -40px;
-            left: 45%;
+            width: 240px;
+            height: 240px;
+            background: rgba(155,140,255,0.10);
+            bottom: 40px;
+            left: 48%;
         }
 
         .navbar {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(4, 10, 22, 0.62);
+            background: rgba(6, 10, 20, 0.60);
             backdrop-filter: blur(18px);
-            border-bottom: 1px solid rgba(255,255,255,0.07);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
         }
 
         .nav-inner {
@@ -257,9 +259,9 @@ HTML = """
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, rgba(98,245,212,0.18), rgba(72,184,255,0.16));
-            border: 1px solid rgba(255,255,255,0.10);
-            box-shadow: 0 10px 30px rgba(98,245,212,0.14);
+            background: linear-gradient(135deg, rgba(98,245,212,0.14), rgba(72,184,255,0.12));
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 10px 24px rgba(98,245,212,0.08);
         }
 
         .logo span {
@@ -295,30 +297,27 @@ HTML = """
             font-weight: 800;
             font-size: 15px;
             border: 1px solid transparent;
-            transition: 0.25s ease;
+            transition: transform 0.16s ease, box-shadow 0.25s ease, border-color 0.25s ease;
             cursor: pointer;
             position: relative;
             overflow: hidden;
             white-space: nowrap;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
+            will-change: transform;
         }
 
         .btn-primary {
             color: #03151c;
-            background: linear-gradient(135deg, #7ff8df 0%, #62f5d4 30%, #5fd4ff 100%);
+            background: linear-gradient(135deg, #7ff8df 0%, #62f5d4 34%, #5fd4ff 100%);
             box-shadow:
-                0 14px 34px rgba(98,245,212,0.24),
-                0 0 0 1px rgba(255,255,255,0.08) inset;
+                0 12px 26px rgba(98,245,212,0.18),
+                0 0 0 1px rgba(255,255,255,0.06) inset;
         }
 
         .btn-primary::after {
             content: "";
             position: absolute;
             inset: -60%;
-            background: radial-gradient(circle, rgba(255,255,255,0.35), transparent 35%);
+            background: radial-gradient(circle, rgba(255,255,255,0.28), transparent 36%);
             opacity: 0;
             transition: 0.35s ease;
         }
@@ -329,12 +328,12 @@ HTML = """
 
         .btn-secondary {
             color: #fff;
-            background: rgba(255,255,255,0.05);
-            border-color: rgba(255,255,255,0.10);
+            background: rgba(255,255,255,0.04);
+            border-color: rgba(255,255,255,0.09);
         }
 
         .btn-secondary:hover {
-            box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset, 0 18px 34px rgba(0,0,0,0.24);
+            box-shadow: 0 14px 30px rgba(0,0,0,0.20);
         }
 
         .hero {
@@ -345,11 +344,11 @@ HTML = """
         .hero::before {
             content: "";
             position: absolute;
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(98,245,212,0.16), transparent 68%);
-            top: -220px;
-            left: -180px;
+            width: 620px;
+            height: 620px;
+            background: radial-gradient(circle, rgba(98,245,212,0.09), transparent 68%);
+            top: -190px;
+            left: -160px;
             filter: blur(100px);
             z-index: 3;
             pointer-events: none;
@@ -358,11 +357,11 @@ HTML = """
         .hero::after {
             content: "";
             position: absolute;
-            width: 640px;
-            height: 640px;
-            background: radial-gradient(circle, rgba(72,184,255,0.16), transparent 68%);
-            top: -160px;
-            right: -180px;
+            width: 560px;
+            height: 560px;
+            background: radial-gradient(circle, rgba(72,184,255,0.08), transparent 68%);
+            top: -150px;
+            right: -160px;
             filter: blur(100px);
             z-index: 3;
             pointer-events: none;
@@ -372,8 +371,8 @@ HTML = """
             position: relative;
             border-radius: 34px;
             padding: 34px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
-            border: 1px solid rgba(255,255,255,0.08);
+            background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.018));
+            border: 1px solid rgba(255,255,255,0.07);
             box-shadow: var(--shadow);
             overflow: hidden;
         }
@@ -383,8 +382,8 @@ HTML = """
             position: absolute;
             inset: 0;
             background:
-                linear-gradient(135deg, rgba(255,255,255,0.06), transparent 28%),
-                radial-gradient(circle at 90% 0%, rgba(98,245,212,0.10), transparent 22%);
+                linear-gradient(135deg, rgba(255,255,255,0.035), transparent 28%),
+                radial-gradient(circle at 90% 0%, rgba(98,245,212,0.05), transparent 22%);
             pointer-events: none;
         }
 
@@ -403,8 +402,8 @@ HTML = """
             gap: 10px;
             padding: 10px 16px;
             border-radius: 999px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.10);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
             color: #d9fff7;
             font-size: 13px;
             font-weight: 700;
@@ -416,7 +415,7 @@ HTML = """
             height: 8px;
             border-radius: 50%;
             background: var(--accent);
-            box-shadow: 0 0 18px rgba(98,245,212,0.8);
+            box-shadow: 0 0 14px rgba(98,245,212,0.55);
         }
 
         h1 {
@@ -428,7 +427,7 @@ HTML = """
         }
 
         .gradient-text {
-            background: linear-gradient(90deg, #ffffff 0%, #dffff8 20%, #86f5ff 52%, #c9c3ff 100%);
+            background: linear-gradient(90deg, #ffffff 0%, #e6fff9 20%, #97f7ff 54%, #cec7ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -458,8 +457,8 @@ HTML = """
         .stat-chip {
             padding: 18px 18px;
             border-radius: 18px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.07);
             backdrop-filter: blur(12px);
         }
 
@@ -488,8 +487,8 @@ HTML = """
             gap: 10px;
             padding: 14px 16px;
             border-radius: 16px;
-            background: rgba(255,255,255,0.045);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.07);
             color: #e4edf7;
             font-size: 14px;
         }
@@ -500,7 +499,7 @@ HTML = """
             height: 8px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--accent), var(--accent-2));
-            box-shadow: 0 0 14px rgba(98,245,212,0.55);
+            box-shadow: 0 0 10px rgba(98,245,212,0.40);
             flex: 0 0 8px;
         }
 
@@ -508,8 +507,8 @@ HTML = """
             position: relative;
             border-radius: 28px;
             padding: 22px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.035));
-            border: 1px solid rgba(255,255,255,0.08);
+            background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.025));
+            border: 1px solid rgba(255,255,255,0.07);
             backdrop-filter: blur(16px);
             overflow: hidden;
             min-height: 100%;
@@ -522,7 +521,7 @@ HTML = """
             height: 160%;
             top: -40%;
             left: -36%;
-            background: radial-gradient(circle, rgba(98,245,212,0.10), transparent 36%);
+            background: radial-gradient(circle, rgba(98,245,212,0.06), transparent 36%);
             pointer-events: none;
         }
 
@@ -533,7 +532,7 @@ HTML = """
             height: 140%;
             bottom: -40%;
             right: -40%;
-            background: radial-gradient(circle, rgba(72,184,255,0.09), transparent 36%);
+            background: radial-gradient(circle, rgba(72,184,255,0.05), transparent 36%);
             pointer-events: none;
         }
 
@@ -562,8 +561,8 @@ HTML = """
             gap: 8px;
             padding: 8px 12px;
             border-radius: 999px;
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.07);
             color: #d7fff7;
             font-size: 12px;
             font-weight: 700;
@@ -574,7 +573,7 @@ HTML = """
             height: 8px;
             border-radius: 50%;
             background: #34d399;
-            box-shadow: 0 0 14px rgba(52,211,153,0.8);
+            box-shadow: 0 0 12px rgba(52,211,153,0.6);
             animation: pulse 1.8s infinite;
         }
 
@@ -588,8 +587,8 @@ HTML = """
         .metric {
             padding: 16px;
             border-radius: 18px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.07);
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
         }
 
         .metric-label {
@@ -608,8 +607,8 @@ HTML = """
             margin-top: 16px;
             padding: 18px;
             border-radius: 20px;
-            background: rgba(255,255,255,0.045);
-            border: 1px solid rgba(255,255,255,0.07);
+            background: rgba(255,255,255,0.035);
+            border: 1px solid rgba(255,255,255,0.06);
         }
 
         .chart-top {
@@ -650,8 +649,8 @@ HTML = """
             position: relative;
             height: 10px;
             border-radius: 999px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.05);
             overflow: hidden;
         }
 
@@ -659,7 +658,7 @@ HTML = """
             height: 100%;
             border-radius: 999px;
             background: linear-gradient(90deg, #62f5d4, #5fd4ff, #b6b0ff);
-            box-shadow: 0 0 18px rgba(98,245,212,0.34);
+            box-shadow: 0 0 14px rgba(98,245,212,0.18);
         }
 
         .bar-value {
@@ -673,8 +672,8 @@ HTML = """
             margin-top: 14px;
             padding: 16px;
             border-radius: 18px;
-            background: rgba(255,255,255,0.045);
-            border: 1px solid rgba(255,255,255,0.07);
+            background: rgba(255,255,255,0.035);
+            border: 1px solid rgba(255,255,255,0.06);
         }
 
         .trend-line {
@@ -690,9 +689,9 @@ HTML = """
             flex: 1;
             position: relative;
             border-radius: 12px 12px 6px 6px;
-            background: linear-gradient(180deg, rgba(98,245,212,0.95), rgba(95,212,255,0.42));
+            background: linear-gradient(180deg, rgba(98,245,212,0.85), rgba(95,212,255,0.35));
             min-height: 20px;
-            box-shadow: 0 0 16px rgba(98,245,212,0.18);
+            box-shadow: 0 0 14px rgba(98,245,212,0.10);
         }
 
         .trend-col::after {
@@ -730,12 +729,6 @@ HTML = """
             font-size: 16px;
         }
 
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -753,8 +746,8 @@ HTML = """
             overflow: hidden;
             border-radius: 24px;
             padding: 24px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.03));
-            border: 1px solid rgba(255,255,255,0.08);
+            background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.025));
+            border: 1px solid rgba(255,255,255,0.07);
             box-shadow: var(--shadow);
             transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
         }
@@ -766,7 +759,7 @@ HTML = """
             height: 220%;
             left: -60%;
             top: -70%;
-            background: radial-gradient(circle, rgba(98,245,212,0.14), transparent 32%);
+            background: radial-gradient(circle, rgba(98,245,212,0.12), transparent 32%);
             opacity: 0;
             transition: 0.35s ease;
             pointer-events: none;
@@ -778,8 +771,11 @@ HTML = """
 
         .card:hover {
             transform: translateY(-6px);
-            border-color: rgba(98,245,212,0.16);
-            box-shadow: 0 24px 80px rgba(0,0,0,0.34);
+            border-color: rgba(98,245,212,0.14);
+            box-shadow:
+                0 0 0 1px rgba(98,245,212,0.14),
+                0 20px 60px rgba(0,0,0,0.34),
+                0 0 34px rgba(98,245,212,0.08);
         }
 
         .card-icon {
@@ -790,9 +786,9 @@ HTML = """
             align-items: center;
             justify-content: center;
             margin-bottom: 16px;
-            background: linear-gradient(135deg, rgba(98,245,212,0.16), rgba(95,212,255,0.12));
-            border: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 10px 24px rgba(98,245,212,0.10);
+            background: linear-gradient(135deg, rgba(98,245,212,0.14), rgba(95,212,255,0.10));
+            border: 1px solid rgba(255,255,255,0.07);
+            box-shadow: 0 8px 20px rgba(98,245,212,0.06);
         }
 
         .card h3 {
@@ -832,7 +828,7 @@ HTML = """
             height: 8px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--accent), var(--accent-2));
-            box-shadow: 0 0 12px rgba(98,245,212,0.5);
+            box-shadow: 0 0 10px rgba(98,245,212,0.35);
         }
 
         .steps-wrap {
@@ -847,8 +843,8 @@ HTML = """
         .form-box {
             border-radius: 28px;
             padding: 28px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.03));
-            border: 1px solid rgba(255,255,255,0.08);
+            background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.025));
+            border: 1px solid rgba(255,255,255,0.07);
             box-shadow: var(--shadow);
         }
 
@@ -874,7 +870,7 @@ HTML = """
             gap: 14px;
             align-items: start;
             padding: 18px 0;
-            border-top: 1px solid rgba(255,255,255,0.07);
+            border-top: 1px solid rgba(255,255,255,0.06);
         }
 
         .step-item:first-of-type {
@@ -909,8 +905,8 @@ HTML = """
 
         .preview-window {
             border-radius: 22px;
-            background: rgba(6,12,25,0.84);
-            border: 1px solid rgba(255,255,255,0.07);
+            background: rgba(6,12,25,0.78);
+            border: 1px solid rgba(255,255,255,0.06);
             overflow: hidden;
         }
 
@@ -919,7 +915,7 @@ HTML = """
             align-items: center;
             gap: 8px;
             padding: 14px 16px;
-            border-bottom: 1px solid rgba(255,255,255,0.07);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
             background: rgba(255,255,255,0.03);
         }
 
@@ -948,8 +944,8 @@ HTML = """
         .preview-card {
             padding: 16px;
             border-radius: 18px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(255,255,255,0.035);
+            border: 1px solid rgba(255,255,255,0.055);
         }
 
         .preview-card strong {
@@ -982,9 +978,9 @@ HTML = """
         .tiny-bar {
             height: 8px;
             border-radius: 999px;
-            background: rgba(255,255,255,0.06);
+            background: rgba(255,255,255,0.05);
             overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.04);
         }
 
         .tiny-bar > div {
@@ -1005,25 +1001,25 @@ HTML = """
             overflow: hidden;
             border-radius: 30px;
             padding: 30px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.065), rgba(255,255,255,0.035));
-            border: 1px solid rgba(255,255,255,0.08);
+            background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.028));
+            border: 1px solid rgba(255,255,255,0.07);
             box-shadow: var(--shadow);
         }
 
         .price-card.featured {
-            border-color: rgba(98,245,212,0.20);
-            box-shadow: 0 20px 80px rgba(0,0,0,0.36), 0 0 0 1px rgba(98,245,212,0.08) inset;
+            border-color: rgba(98,245,212,0.16);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.32), 0 0 0 1px rgba(98,245,212,0.05) inset;
         }
 
         .price-card.featured::before {
             content: "";
             position: absolute;
-            width: 240px;
-            height: 240px;
+            width: 220px;
+            height: 220px;
             right: -60px;
             top: -60px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(98,245,212,0.18), transparent 60%);
+            background: radial-gradient(circle, rgba(98,245,212,0.12), transparent 60%);
             filter: blur(20px);
         }
 
@@ -1034,8 +1030,8 @@ HTML = """
             margin-bottom: 14px;
             padding: 8px 12px;
             border-radius: 999px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.07);
             color: #ddfff9;
             font-size: 12px;
             font-weight: 800;
@@ -1089,7 +1085,7 @@ HTML = """
             margin-top: 7px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--accent), var(--accent-2));
-            box-shadow: 0 0 12px rgba(98,245,212,0.5);
+            box-shadow: 0 0 10px rgba(98,245,212,0.35);
             flex: 0 0 10px;
         }
 
@@ -1101,8 +1097,8 @@ HTML = """
         .info-card {
             border-radius: 24px;
             padding: 24px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.03));
-            border: 1px solid rgba(255,255,255,0.08);
+            background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.025));
+            border: 1px solid rgba(255,255,255,0.07);
             box-shadow: var(--shadow);
         }
 
@@ -1136,8 +1132,8 @@ HTML = """
             width: 100%;
             padding: 15px 16px;
             border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.10);
-            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.09);
+            background: rgba(255,255,255,0.045);
             color: #fff;
             outline: none;
             font-size: 15px;
@@ -1147,8 +1143,8 @@ HTML = """
         .field input:focus,
         .field select:focus,
         .field textarea:focus {
-            border-color: rgba(98,245,212,0.32);
-            box-shadow: 0 0 0 4px rgba(98,245,212,0.08);
+            border-color: rgba(98,245,212,0.24);
+            box-shadow: 0 0 0 4px rgba(98,245,212,0.06);
         }
 
         .field textarea {
@@ -1183,14 +1179,14 @@ HTML = """
             gap: 14px;
             padding: 16px;
             border-radius: 18px;
-            background: rgba(255,255,255,0.045);
-            border: 1px solid rgba(255,255,255,0.07);
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
             transition: 0.24s ease;
         }
 
         .contact-item:hover {
             transform: translateY(-3px);
-            border-color: rgba(98,245,212,0.18);
+            border-color: rgba(98,245,212,0.14);
         }
 
         .contact-icon {
@@ -1200,8 +1196,8 @@ HTML = """
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, rgba(98,245,212,0.16), rgba(95,212,255,0.12));
-            border: 1px solid rgba(255,255,255,0.08);
+            background: linear-gradient(135deg, rgba(98,245,212,0.14), rgba(95,212,255,0.10));
+            border: 1px solid rgba(255,255,255,0.07);
             flex: 0 0 50px;
         }
 
@@ -1226,13 +1222,13 @@ HTML = """
 
         .alert.success {
             background: rgba(34,197,94,0.12);
-            border: 1px solid rgba(34,197,94,0.25);
+            border: 1px solid rgba(34,197,94,0.24);
             color: #c7f9d4;
         }
 
         .alert.error {
             background: rgba(239,68,68,0.12);
-            border: 1px solid rgba(239,68,68,0.25);
+            border: 1px solid rgba(239,68,68,0.22);
             color: #ffd0d0;
         }
 
@@ -1261,9 +1257,9 @@ HTML = """
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(7, 18, 39, 0.92);
-            border: 1px solid rgba(255,255,255,0.10);
-            box-shadow: 0 14px 34px rgba(0,0,0,0.28);
+            background: rgba(7, 18, 39, 0.88);
+            border: 1px solid rgba(255,255,255,0.09);
+            box-shadow: 0 14px 30px rgba(0,0,0,0.24);
             transition: 0.22s ease;
             backdrop-filter: blur(14px);
         }
@@ -1299,7 +1295,7 @@ HTML = """
 
         @keyframes pulse {
             0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.18); opacity: 0.7; }
+            50% { transform: scale(1.16); opacity: 0.72; }
         }
 
         @media (max-width: 1100px) {
@@ -1308,8 +1304,7 @@ HTML = """
             .pricing-grid,
             .form-wrap,
             .grid-4,
-            .grid-3,
-            .grid-2 {
+            .grid-3 {
                 grid-template-columns: 1fr;
             }
 
@@ -1401,35 +1396,35 @@ HTML = """
 
     <canvas id="network-bg"></canvas>
 
-    <div class="navbar">
-        <div class="container nav-inner">
-            <div class="logo">
-                <div class="logo-mark">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                        <path d="M12 2L14.8 8.2L21 11L14.8 13.8L12 20L9.2 13.8L3 11L9.2 8.2L12 2Z" fill="#62F5D4"/>
-                    </svg>
-                </div>
-                <div><span>Voice</span>Score</div>
-            </div>
-
-            <div class="nav-links">
-                <a href="#features">Возможности</a>
-                <a href="#how">Как это работает</a>
-                <a href="#reports">Что видно</a>
-                <a href="#pricing">Тариф</a>
-                <a href="#contact">Контакты</a>
-            </div>
-
-            <a href="#contact" class="btn btn-primary">Получить демо</a>
-        </div>
-    </div>
-
     <section class="hero">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
+        <div class="orb orb-1 parallax" data-speed="16"></div>
+        <div class="orb orb-2 parallax" data-speed="12"></div>
+
+        <div class="navbar">
+            <div class="container nav-inner">
+                <div class="logo">
+                    <div class="logo-mark">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2L14.8 8.2L21 11L14.8 13.8L12 20L9.2 13.8L3 11L9.2 8.2L12 2Z" fill="#62F5D4"/>
+                        </svg>
+                    </div>
+                    <div><span>Voice</span>Score</div>
+                </div>
+
+                <div class="nav-links">
+                    <a href="#features">Возможности</a>
+                    <a href="#how">Как это работает</a>
+                    <a href="#reports">Что видно</a>
+                    <a href="#pricing">Тариф</a>
+                    <a href="#contact">Контакты</a>
+                </div>
+
+                <a href="#contact" class="btn btn-primary magnetic">Получить демо</a>
+            </div>
+        </div>
 
         <div class="container">
-            <div class="hero-shell fade-up show">
+            <div class="hero-shell fade-up show parallax" data-speed="6">
                 <div class="hero-grid">
                     <div>
                         <div class="badge">
@@ -1439,7 +1434,7 @@ HTML = """
 
                         <h1 class="gradient-text">
                             {{ site_title }} —
-                            умная аналитика звонков для роста команды
+                            контролируйте 100% звонков без ручной прослушки
                         </h1>
 
                         <p class="hero-subtitle">
@@ -1450,18 +1445,18 @@ HTML = """
                         </p>
 
                         <div class="hero-actions">
-                            <a href="#contact" class="btn btn-primary">Оставить заявку</a>
-                            <a href="#reports" class="btn btn-secondary">Посмотреть возможности</a>
+                            <a href="#contact" class="btn btn-primary magnetic">Оставить заявку</a>
+                            <a href="#reports" class="btn btn-secondary magnetic">Посмотреть возможности</a>
                         </div>
 
                         <div class="hero-stats">
                             <div class="stat-chip">
-                                <strong>100%</strong>
+                                <strong class="count-up" data-target="100" data-suffix="%">0</strong>
                                 <span>анализ звонков, а не выборка</span>
                             </div>
                             <div class="stat-chip">
-                                <strong>до 5 ПК</strong>
-                                <span>до 5 учетных записей для команды</span>
+                                <strong class="count-up" data-target="5" data-prefix="до ">0</strong>
+                                <span>до 5 учетных записей / ПК</span>
                             </div>
                             <div class="stat-chip">
                                 <strong>ежедневно</strong>
@@ -1477,7 +1472,7 @@ HTML = """
                         </div>
                     </div>
 
-                    <div class="dashboard">
+                    <div class="dashboard parallax" data-speed="10">
                         <div class="dashboard-inner">
                             <div class="dashboard-head">
                                 <div class="dashboard-title">AI Dashboard</div>
@@ -1490,15 +1485,15 @@ HTML = """
                             <div class="metric-grid">
                                 <div class="metric">
                                     <div class="metric-label">Проверено звонков</div>
-                                    <div class="metric-value">12 480</div>
+                                    <div class="metric-value count-up" data-target="12480">0</div>
                                 </div>
                                 <div class="metric">
                                     <div class="metric-label">Средняя оценка</div>
-                                    <div class="metric-value">86%</div>
+                                    <div class="metric-value count-up" data-target="86" data-suffix="%">0</div>
                                 </div>
                                 <div class="metric">
                                     <div class="metric-label">Нарушения</div>
-                                    <div class="metric-value">143</div>
+                                    <div class="metric-value count-up" data-target="143">0</div>
                                 </div>
                             </div>
 
@@ -1549,7 +1544,7 @@ HTML = """
             </div>
         </div>
 
-        <div class="orb orb-3"></div>
+        <div class="orb orb-3 parallax" data-speed="20"></div>
     </section>
 
     <section id="features" class="section">
@@ -1701,6 +1696,15 @@ HTML = """
                 </div>
             </div>
         </div>
+
+        <div class="container" style="margin-top:20px;">
+            <div class="hero-points fade-up">
+                <div class="mini-pill">Подходит для MFO и взыскания</div>
+                <div class="mini-pill">Используется в call-центрах</div>
+                <div class="mini-pill">Подходит для команд 20–50 человек</div>
+                <div class="mini-pill">Настраивается под ваш процесс</div>
+            </div>
+        </div>
     </section>
 
     <section id="reports" class="section">
@@ -1782,7 +1786,7 @@ HTML = """
                         <div class="feature-item">до 5 учетных записей / до 5 ПК</div>
                     </div>
 
-                    <a href="#contact" class="btn btn-primary">Оставить заявку</a>
+                    <a href="#contact" class="btn btn-primary magnetic">Оставить заявку</a>
                 </div>
 
                 <div class="pricing-side">
@@ -1856,7 +1860,7 @@ HTML = """
                             <textarea name="comment" placeholder="Комментарий"></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary" style="width:100%;">Отправить заявку</button>
+                        <button type="submit" class="btn btn-primary magnetic" style="width:100%;">Отправить заявку</button>
                     </form>
                 </div>
 
@@ -1893,7 +1897,7 @@ HTML = """
                         </a>
                     </div>
 
-                    <div style="margin-top:20px; padding:18px; border-radius:18px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07);">
+                    <div style="margin-top:20px; padding:18px; border-radius:18px; background:rgba(255,255,255,0.035); border:1px solid rgba(255,255,255,0.06);">
                         <strong style="display:block; margin-bottom:8px;">Подходит для:</strong>
                         <div style="color: var(--muted); line-height:1.75; font-size:15px;">
                             отделов взыскания, продаж, call-центров, служб контроля качества и руководителей,
@@ -1967,6 +1971,60 @@ HTML = """
         reveal();
         window.addEventListener('scroll', reveal);
 
+        function animateValue(el, start, end, duration, prefix = "", suffix = "") {
+            let startTime = null;
+
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+                const current = Math.floor(progress * (end - start) + start);
+                el.textContent = prefix + current.toLocaleString('ru-RU') + suffix;
+                if (progress < 1) requestAnimationFrame(step);
+            }
+
+            requestAnimationFrame(step);
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+
+                const el = entry.target;
+                if (el.dataset.animated === "true") return;
+
+                const target = parseInt(el.dataset.target || "0", 10);
+                const prefix = el.dataset.prefix || "";
+                const suffix = el.dataset.suffix || "";
+                animateValue(el, 0, target, 1300, prefix, suffix);
+                el.dataset.animated = "true";
+            });
+        }, { threshold: 0.45 });
+
+        document.querySelectorAll(".count-up").forEach(el => observer.observe(el));
+
+        document.querySelectorAll(".magnetic").forEach(btn => {
+            btn.addEventListener("mousemove", e => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.14}px, ${y * 0.14}px)`;
+            });
+
+            btn.addEventListener("mouseleave", () => {
+                btn.style.transform = "";
+            });
+        });
+
+        document.addEventListener("mousemove", e => {
+            const x = (e.clientX / window.innerWidth - 0.5);
+            const y = (e.clientY / window.innerHeight - 0.5);
+
+            document.querySelectorAll(".parallax").forEach(el => {
+                const speed = parseFloat(el.dataset.speed || "10");
+                el.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+
         const canvas = document.getElementById("network-bg");
         const ctx = canvas.getContext("2d");
 
@@ -1974,23 +2032,23 @@ HTML = """
         let mouse = {
             x: null,
             y: null,
-            radius: 170
+            radius: 160
         };
 
         function resizeCanvas() {
             w = canvas.width = window.innerWidth;
             h = canvas.height = window.innerHeight;
 
-            const count = Math.min(110, Math.floor(w / 16));
+            const count = Math.min(85, Math.floor(w / 22));
             particles = [];
 
             for (let i = 0; i < count; i++) {
                 particles.push({
                     x: Math.random() * w,
                     y: Math.random() * h,
-                    vx: (Math.random() - 0.5) * 0.42,
-                    vy: (Math.random() - 0.5) * 0.42,
-                    r: Math.random() * 1.8 + 0.8
+                    vx: (Math.random() - 0.5) * 0.28,
+                    vy: (Math.random() - 0.5) * 0.28,
+                    r: Math.random() * 1.5 + 0.7
                 });
             }
         }
@@ -2005,7 +2063,7 @@ HTML = """
             ctx.fill();
         }
 
-        function animate() {
+        function animateBackground() {
             ctx.clearRect(0, 0, w, h);
 
             for (let i = 0; i < particles.length; i++) {
@@ -2024,16 +2082,16 @@ HTML = """
 
                     if (distm < mouse.radius) {
                         const force = (mouse.radius - distm) / mouse.radius;
-                        p.x += (dxm / distm) * force * 1.4 || 0;
-                        p.y += (dym / distm) * force * 1.4 || 0;
+                        p.x += (dxm / distm) * force * 0.9 || 0;
+                        p.y += (dym / distm) * force * 0.9 || 0;
                     }
                 }
 
-                drawGlow(p.x, p.y, 8, "rgba(98,245,212,0.05)");
+                drawGlow(p.x, p.y, 7, "rgba(98,245,212,0.03)");
 
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = "rgba(120,245,230,0.75)";
+                ctx.fillStyle = "rgba(120,245,230,0.55)";
                 ctx.fill();
             }
 
@@ -2043,8 +2101,8 @@ HTML = """
                     const dy = particles[i].y - particles[j].y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
 
-                    if (dist < 130) {
-                        const alpha = (1 - dist / 130) * 0.22;
+                    if (dist < 115) {
+                        const alpha = (1 - dist / 115) * 0.14;
                         ctx.strokeStyle = `rgba(98,245,212,${alpha})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
@@ -2056,10 +2114,10 @@ HTML = """
             }
 
             if (mouse.x !== null && mouse.y !== null) {
-                drawGlow(mouse.x, mouse.y, 110, "rgba(72,184,255,0.06)");
+                drawGlow(mouse.x, mouse.y, 90, "rgba(72,184,255,0.035)");
             }
 
-            requestAnimationFrame(animate);
+            requestAnimationFrame(animateBackground);
         }
 
         window.addEventListener("mousemove", (e) => {
@@ -2075,7 +2133,7 @@ HTML = """
         window.addEventListener("resize", resizeCanvas);
 
         resizeCanvas();
-        animate();
+        animateBackground();
     </script>
 
 </body>
